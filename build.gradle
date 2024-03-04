@@ -14,8 +14,8 @@ targetCompatibility = 1.7
  * during setup.
  */
 dependencies {
-    compile 'org.scala-lang:scala-library:2.11.7'
-    compile files(
+    implementation 'org.scala-lang:scala-library:2.11.7'
+    implementation files(
         'lib/Guava/guava-14.0.1.jar',
         'lib/Jython/jython.jar',
         'lib/Clojure/clojure.jar',
@@ -27,7 +27,7 @@ dependencies {
         'lib/gdl-validation/gdl-validation-0.2.2.jar',
         'lib/gdl-validation/java-cup-11b-runtime-2015.03.26.jar',
     )
-    testCompile files(
+    testImplementation files(
         'lib/JUnit/junit-4.11.jar',
         'lib/JUnit/hamcrest-core-1.3.jar',
     )
@@ -181,9 +181,4 @@ task gameServerRunner(type: JavaExec) {
     doFirst {
         args = myargs.split().toList()
     }
-}
-
-// This was used to generate the Gradle wrapper.
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
 }
