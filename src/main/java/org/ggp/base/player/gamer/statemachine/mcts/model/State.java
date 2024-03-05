@@ -1,4 +1,5 @@
 package org.ggp.base.player.gamer.statemachine.mcts.model;
 
-public class TreeNode {
+public interface State {
+    boolean isTerminal();
 }
