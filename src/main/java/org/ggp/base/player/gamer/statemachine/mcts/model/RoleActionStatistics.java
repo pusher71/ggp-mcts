@@ -8,30 +8,43 @@ import java.util.Set;
 
 public class RoleActionStatistics {
 
-    private Map<Move, Integer> actionScores; // Очки, привязанные к действиям
-    private Map<Move, Integer> actionNumUses; // Количество использований каждого действия
+    private Map<Move, Item> map; // Очки, привязанные к действиям, и их количества использований
 
     public RoleActionStatistics() {
-        actionScores = new HashMap<>();
-        actionNumUses = new HashMap<>();
+        map = new HashMap<>();
     }
 
     // Записать очки для данного действия
     public void addActionScore(Move action, int score) {
-        actionScores.put(action, score);
+        map.put(action, new Item(score));
     }
 
-    // Инкрементировать количество использований данного действия
+    // инкрементировать количество использований данного действия
     public void incActionNumUses(Move action) {
-        if (!actionNumUses.containsKey(action)) {
-            actionNumUses.put(action, 1);
+        if (!map.containsKey(action)) {
+            map.put(action, new Item(0, 1));
         } else {
-            int oldValue = actionNumUses.get(action);
-            actionNumUses.put(action, oldValue + 1);
+            Item oldValue = map.get(action);
+            oldValue.actionNumUses++;
         }
     }
 
     public Set<Move> getUsedActions() {
-        return actionNumUses.keySet();
+        return map.keySet();
+    }
+
+    class Item {
+        private int actionScore;
+        private int actionNumUses;
+
+        public Item(int score) {
+            actionScore = score;
+            actionNumUses = 0;
+        }
+
+        public Item(int score, int numUses) {
+            actionScore = score;
+            actionNumUses = numUses;
+        }
     }
 }
