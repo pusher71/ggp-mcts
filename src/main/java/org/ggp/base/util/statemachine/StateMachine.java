@@ -396,4 +396,14 @@ public abstract class StateMachine
             avgScores[j] /= repetitions;
         }
     }
+
+    public void setRandomSeed(long seed)
+    {
+        ThreadLocalRandom.current().setSeed(seed);
+    }
+
+    protected int getRandom(int n)
+    {
+        return ThreadLocalRandom.current().nextInt(n);
+    }
 }
