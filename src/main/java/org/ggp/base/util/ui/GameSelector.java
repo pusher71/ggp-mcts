@@ -100,6 +100,9 @@ public class GameSelector implements ActionListener {
             if (theName.length() > 24)
                 theName = theName.substring(0, 24) + "...";
             theGameList.addItem(new NamedItem(theKey, theName));
+            if (theName.equals("Tic-Tac-Toe")) {
+                theGameList.setSelectedIndex(theGameList.getItemCount() - 1);
+            }
         }
     }
 
