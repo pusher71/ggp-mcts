@@ -32,6 +32,8 @@ import org.ggp.base.util.statemachine.exceptions.TransitionDefinitionException;
  */
 public abstract class StateMachineGamer extends Gamer
 {
+    private long metaGamingTimeout = 0;
+
     // =====================================================================
     // First, the abstract methods which need to be overriden by subclasses.
     // These determine what state machine is used, what the gamer does during
@@ -75,6 +77,14 @@ public abstract class StateMachineGamer extends Gamer
     // =====================================================================
     // Next, methods which can be used by subclasses to get information about
     // the current state of the game, and tweak the state machine on the fly.
+
+    /**
+     * @return the meta-gaming timeout (in milliseconds).
+     */
+    public final long getMetaGamingTimeout()
+    {
+        return metaGamingTimeout;
+    }
 
     /**
      * Returns the current state of the game.
@@ -178,6 +188,8 @@ public abstract class StateMachineGamer extends Gamer
     {
         try
         {
+            metaGamingTimeout = timeout;
+
             stateMachine = getInitialStateMachine();
             stateMachine.initialize(getMatch().getGame().getRules());
             currentState = stateMachine.getInitialState();

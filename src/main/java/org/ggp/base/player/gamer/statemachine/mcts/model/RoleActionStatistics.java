@@ -14,37 +14,39 @@ public class RoleActionStatistics {
         map = new HashMap<>();
     }
 
-    // Записать очки для данного действия
-    public void addActionScore(Move action, int score) {
-        map.put(action, new Item(score));
+    public Item get(Move action) {
+        return map.get(action);
     }
 
-    // инкрементировать количество использований данного действия
-    public void incActionNumUses(Move action) {
-        if (!map.containsKey(action)) {
-            map.put(action, new Item(0, 1));
-        } else {
-            Item oldValue = map.get(action);
-            oldValue.actionNumUses++;
-        }
+    public void putAction(Move action) {
+        map.put(action, new Item());
     }
 
-    public Set<Move> getUsedActions() {
+    public void inc(Move action, double actionScore) {
+        Item item = map.get(action);
+        item.actionScore += actionScore;
+        item.actionNumUsed++;
+    }
+
+    public Set<Move> getUseActions() {
         return map.keySet();
     }
 
-    class Item {
-        private int actionScore;
-        private int actionNumUses;
+    public class Item {
+        private double actionScore;
+        private int actionNumUsed;
 
-        public Item(int score) {
-            actionScore = score;
-            actionNumUses = 0;
+        public Item() {
+            actionScore = 0;
+            actionNumUsed = 0;
         }
 
-        public Item(int score, int numUses) {
-            actionScore = score;
-            actionNumUses = numUses;
+        public double getActionScore() {
+            return actionScore;
+        }
+
+        public int getActionNumUsed() {
+            return actionNumUsed;
         }
     }
 }

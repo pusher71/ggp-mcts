@@ -12,6 +12,7 @@ import org.ggp.base.player.gamer.exception.GamePreviewException;
 import org.ggp.base.player.gamer.exception.MetaGamingException;
 import org.ggp.base.player.gamer.exception.MoveSelectionException;
 import org.ggp.base.player.gamer.exception.StoppingException;
+import org.ggp.base.player.gamer.statemachine.sancho.RuntimeGameCharacteristics;
 import org.ggp.base.util.game.Game;
 import org.ggp.base.util.gdl.grammar.GdlConstant;
 import org.ggp.base.util.gdl.grammar.GdlTerm;
@@ -30,6 +31,7 @@ public abstract class Gamer implements Subject
 {
     private Match match;
     private GdlConstant roleName;
+    protected RuntimeGameCharacteristics mGameCharacteristics;
 
     public Gamer()
     {

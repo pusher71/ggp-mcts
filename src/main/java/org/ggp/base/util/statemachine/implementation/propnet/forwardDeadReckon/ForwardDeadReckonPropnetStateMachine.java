@@ -4362,4 +4362,13 @@ public class ForwardDeadReckonPropnetStateMachine extends StateMachine
 
     return result;
   }
+
+  public Role getNextActiveRole(Role previousRole) {
+    int previousRoleIndex = getRoles().indexOf(previousRole);
+    previousRoleIndex++;
+    if (previousRoleIndex == getRoles().size()) {
+      previousRoleIndex = 0;
+    }
+    return getRoles().get(previousRoleIndex);
+  }
 }
