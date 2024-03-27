@@ -2530,14 +2530,7 @@ public class ForwardDeadReckonPropnetStateMachine extends StateMachine
       {
         moves.add(move);
       }
-      try
-      {
-        validationMachine.getNextState(validationState, moves);
-      }
-      catch (TransitionDefinitionException e)
-      {
-        e.printStackTrace();
-      }
+      validationMachine.getNextState(validationState, moves);
     }
 
     int index = 0;
@@ -4361,14 +4354,5 @@ public class ForwardDeadReckonPropnetStateMachine extends StateMachine
     }
 
     return result;
-  }
-
-  public Role getNextActiveRole(Role previousRole) {
-    int previousRoleIndex = getRoles().indexOf(previousRole);
-    previousRoleIndex++;
-    if (previousRoleIndex == getRoles().size()) {
-      previousRoleIndex = 0;
-    }
-    return getRoles().get(previousRoleIndex);
   }
 }

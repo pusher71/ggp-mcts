@@ -81,10 +81,8 @@ public abstract class StateMachine
      *
      * @param moves A list containing one move per role. The moves should be
      * listed in the same order as roles are listed by {@link #getRoles()}.
-     * @throws TransitionDefinitionException indicates an error in either the
-     * game description or the StateMachine implementation.
      */
-    public abstract MachineState getNextState(MachineState state, List<Move> moves) throws TransitionDefinitionException;
+    public abstract MachineState getNextState(MachineState state, List<Move> moves);
 
     // The following methods are included in the abstract StateMachine base so
     // implementations which use alternative Role/Move/State representations
@@ -405,5 +403,14 @@ public abstract class StateMachine
     protected int getRandom(int n)
     {
         return ThreadLocalRandom.current().nextInt(n);
+    }
+
+    public Role getNextActiveRole(Role previousRole) {
+        int previousRoleIndex = getRoles().indexOf(previousRole);
+        previousRoleIndex++;
+        if (previousRoleIndex == getRoles().size()) {
+            previousRoleIndex = 0;
+        }
+        return getRoles().get(previousRoleIndex);
     }
 }

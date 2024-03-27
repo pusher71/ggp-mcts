@@ -96,7 +96,7 @@ public class ProverStateMachine extends StateMachine
     }
 
     @Override
-    public MachineState getNextState(MachineState state, List<Move> moves) throws TransitionDefinitionException
+    public MachineState getNextState(MachineState state, List<Move> moves)
     {
         Set<GdlSentence> results = prover.askAll(ProverQueryBuilder.getNextQuery(), ProverQueryBuilder.getContext(state, getRoles(), moves));
 
@@ -104,7 +104,7 @@ public class ProverStateMachine extends StateMachine
         {
             if (!sentence.isGround())
             {
-                throw new TransitionDefinitionException(state, moves);
+                new TransitionDefinitionException(state, moves).printStackTrace();
             }
         }
 

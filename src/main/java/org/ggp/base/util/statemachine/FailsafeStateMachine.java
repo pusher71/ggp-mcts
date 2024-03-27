@@ -228,14 +228,12 @@ public class FailsafeStateMachine extends StateMachine
     }
 
     @Override
-    public MachineState getNextState(MachineState state, List<Move> moves) throws TransitionDefinitionException {
+    public MachineState getNextState(MachineState state, List<Move> moves) {
         if(theBackingMachine == null)
             return null;
 
         try {
             return theBackingMachine.getNextState(state, moves);
-        } catch(TransitionDefinitionException te) {
-            throw te;
         } catch(Exception e) {
             failGracefully(e, null);
         } catch(ThreadDeath d) {

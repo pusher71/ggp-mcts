@@ -83,7 +83,7 @@ public final class CachedStateMachine extends StateMachine
     }
 
     @Override
-    public MachineState getNextState(MachineState state, List<Move> moves) throws TransitionDefinitionException
+    public MachineState getNextState(MachineState state, List<Move> moves)
     {
         Entry entry = getEntry(state);
         synchronized (entry)

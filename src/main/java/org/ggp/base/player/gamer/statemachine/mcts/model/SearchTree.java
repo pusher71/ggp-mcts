@@ -4,8 +4,8 @@ import org.ggp.base.player.gamer.statemachine.mcts.model.strategy.PoolOfStrategi
 import org.ggp.base.util.statemachine.MachineState;
 import org.ggp.base.util.statemachine.Move;
 import org.ggp.base.util.statemachine.Role;
+import org.ggp.base.util.statemachine.StateMachine;
 import org.ggp.base.util.statemachine.exceptions.MoveDefinitionException;
-import org.ggp.base.util.statemachine.implementation.propnet.forwardDeadReckon.ForwardDeadReckonPropnetStateMachine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SearchTree {
 
-    private ForwardDeadReckonPropnetStateMachine gameModel;
+    private StateMachine gameModel;
     private SearchTreeNode root;
     private PoolOfStrategies strategies;
 
-    public SearchTree(ForwardDeadReckonPropnetStateMachine gameModel) {
+    public SearchTree(StateMachine gameModel) {
         this.gameModel = gameModel;
         MachineState rootState = gameModel.getInitialState();
         root = new SearchTreeNode(this, gameModel.getRoles().get(0), rootState, null);
@@ -60,7 +60,7 @@ public class SearchTree {
         return root.isComplete();
     }
 
-    public ForwardDeadReckonPropnetStateMachine getGameModel() {
+    public StateMachine getGameModel() {
         return gameModel;
     }
 

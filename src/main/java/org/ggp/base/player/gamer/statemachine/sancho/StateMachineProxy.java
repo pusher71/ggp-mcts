@@ -81,7 +81,6 @@ class StateMachineProxy extends StateMachine
 
   @Override
   public MachineState getNextState(MachineState state, List<Move> moves)
-      throws TransitionDefinitionException
   {
     MachineState result;
 

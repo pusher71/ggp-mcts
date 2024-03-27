@@ -4,7 +4,7 @@ import org.ggp.base.player.gamer.statemachine.mcts.model.strategy.SelectionStrat
 import org.ggp.base.util.statemachine.MachineState;
 import org.ggp.base.util.statemachine.Move;
 import org.ggp.base.util.statemachine.Role;
-import org.ggp.base.util.statemachine.implementation.propnet.forwardDeadReckon.ForwardDeadReckonPropnetStateMachine;
+import org.ggp.base.util.statemachine.StateMachine;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +31,7 @@ public class SearchTreeNode {
         statistics = new CumulativeStatistics(getGameModel().getRoles());
     }
 
-    public ForwardDeadReckonPropnetStateMachine getGameModel() {
+    public StateMachine getGameModel() {
         return treeOwner.getGameModel();
     }
 
