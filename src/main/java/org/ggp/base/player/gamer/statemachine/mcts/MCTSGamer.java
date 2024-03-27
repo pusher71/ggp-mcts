@@ -13,11 +13,11 @@ import org.ggp.base.util.statemachine.implementation.propnet.forwardDeadReckon.F
 
 public class MCTSGamer extends SampleGamer {
 
-    private final long                            SAFETY_MARGIN = 2500;
+    private final long SAFETY_MARGIN = 2500;
 
-    private ForwardDeadReckonPropnetStateMachine  underlyingStateMachine = null;
-    private SearchTree                            tree = null;
-    private                                       int turnCount = 0;
+    private ForwardDeadReckonPropnetStateMachine underlyingStateMachine = null;
+    private SearchTree tree = null;
+    private int turnCount = 0;
 
     @Override
     public StateMachine getInitialStateMachine() {
@@ -45,8 +45,7 @@ public class MCTSGamer extends SampleGamer {
         SearchTreeNode startRootNode = tree.findNode(getCurrentState());
         tree.cut(startRootNode);
 
-        while(System.currentTimeMillis() < finishBy && !tree.isComplete())
-        {
+        while (System.currentTimeMillis() < finishBy && !tree.isComplete()) {
             iterations++;
             tree.grow();
         }
