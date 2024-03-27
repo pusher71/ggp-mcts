@@ -1,5 +1,7 @@
 package org.ggp.base.player.gamer.statemachine.mcts;
 
+import org.ggp.base.player.gamer.statemachine.mcts.event.TreeEvent;
+import org.ggp.base.player.gamer.statemachine.mcts.event.TreeStartEvent;
 import org.ggp.base.player.gamer.statemachine.mcts.model.SearchTree;
 import org.ggp.base.player.gamer.statemachine.mcts.model.SearchTreeNode;
 import org.ggp.base.player.gamer.statemachine.sample.SampleGamer;
@@ -21,6 +23,7 @@ public class MCTSGamer extends SampleGamer {
             GoalDefinitionException {
         tree = new SearchTree(getStateMachine());
         turnCount = 0;
+        notifyObservers(new TreeStartEvent());
     }
 
     @Override
@@ -28,7 +31,7 @@ public class MCTSGamer extends SampleGamer {
         long finishBy = xiTimeout - SAFETY_MARGIN;
         int iterations = 0;
 
-        System.out.println("Starting turn " + turnCount++);
+        System.out.println("Starting turn " + turnCount);
 
         SearchTreeNode startRootNode = tree.findNode(getCurrentState());
         tree.cut(startRootNode);
@@ -40,6 +43,8 @@ public class MCTSGamer extends SampleGamer {
 
         Move bestMove = tree.getBestAction(getRole());
         System.out.println("Processed " + iterations + " iterations, and playing: " + bestMove);
+        notifyObservers(new TreeEvent(tree, turnCount));
+        turnCount++;
         return bestMove;
     }
 }

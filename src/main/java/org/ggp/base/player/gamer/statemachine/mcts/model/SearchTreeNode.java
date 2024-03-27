@@ -11,13 +11,13 @@ import java.util.Set;
 
 public class SearchTreeNode {
 
-    private SearchTree treeOwner;
+    private transient SearchTree treeOwner;
 
     private Role activeRole;
     private MachineState state;
     private JointActions precedingJointMove;
 
-    private SearchTreeNode parent;
+    private transient SearchTreeNode parent;
     private Set<SearchTreeNode> children;
 
     private CumulativeStatistics statistics;

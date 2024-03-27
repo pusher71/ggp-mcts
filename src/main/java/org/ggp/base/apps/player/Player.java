@@ -26,6 +26,8 @@ import org.ggp.base.apps.player.match.MatchPanel;
 import org.ggp.base.apps.player.network.NetworkPanel;
 import org.ggp.base.player.GamePlayer;
 import org.ggp.base.player.gamer.Gamer;
+import org.ggp.base.player.gamer.statemachine.mcts.MCTSGamer;
+import org.ggp.base.player.gamer.statemachine.mcts.observer.TreeObserver;
 import org.ggp.base.util.reflection.ProjectSearcher;
 import org.ggp.base.util.ui.NativeUI;
 
@@ -155,6 +157,9 @@ public final class Player extends JPanel
 
                     GamePlayer player = new GamePlayer(port, gamer);
                     player.addObserver(networkPanel);
+                    if (player.getGamer() instanceof MCTSGamer) {
+                        player.getGamer().addObserver(new TreeObserver());
+                    }
                     player.start();
 
                     JTabbedPane tab = new JTabbedPane();

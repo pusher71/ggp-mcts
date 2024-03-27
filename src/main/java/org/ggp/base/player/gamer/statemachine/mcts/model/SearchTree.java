@@ -14,9 +14,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SearchTree {
 
-    private StateMachine gameModel;
+    private transient StateMachine gameModel;
     private SearchTreeNode root;
-    private PoolOfStrategies strategies;
+    private transient PoolOfStrategies strategies;
 
     public SearchTree(StateMachine gameModel) {
         this.gameModel = gameModel;

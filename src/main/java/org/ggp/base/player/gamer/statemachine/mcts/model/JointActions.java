@@ -7,7 +7,7 @@ import java.util.*;
 
 public class JointActions {
 
-    private List<Move> actionsList;
+    private transient List<Move> actionsList;
     private Map<Role, Move> actionsMap;
 
     public JointActions() {
